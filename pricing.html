@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFleet Services</title>
+
+    <script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+    }
+    if (localStorage.getItem("rtl") === "true") {
+        document.documentElement.setAttribute("dir", "rtl");
+    }
+</script>
+
+
+    
+    <link rel="stylesheet" href="dist/output.css">
+
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+
+<body id="body" class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+
+              
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="text-3xl">♻️</span>
+                    <h1 class="text-2xl font-bold text-green-600">EcoFleet</h1>
+                </a>
+
+               
+                <ul class="hidden md:flex gap-1 text-gray-700 dark:text-gray-200 font-medium">
+                    <li><a href="index.html"  class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Home</a></li>
+                    <li><a href="about.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">About</a></li>
+                    <li><a href="services.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Services</a></li>
+                    <li><a href="pricing.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Pricing</a></li>
+                    <li><a href="contact.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Contact</a></li>
+                    <li><a href="dashboard/index.html" cl class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Dashboard</a></li>
+                </ul>
+
+               
+                <div class="hidden md:flex items-center gap-2">
+                    <button id="themeToggle"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300"
+                        title="Switch to Dark Mode">
+                        🌓
+                    </button>
+                    <button id="desktopRTLBtn" onclick="toggleRTL()"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition duration-300"
+                        title="Switch to RTL">
+                        ↔️
+                    </button>
+                </div>
+
+                
+                <button id="menuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-green-600 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">
+                    ☰
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+   
+    <aside id="mobileMenu"
+        class="fixed md:hidden z-[60] w-72 max-w-[85%]
+        bg-white dark:bg-gray-900 shadow-2xl
+        transition-transform duration-300 ease-in-out flex flex-col"
+        style="right:0; top:0; height:100vh; height:100dvh; transform: translateX(100%);">
+
+        
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 shrink-0">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl">♻️</span>
+                <span class="text-lg font-bold text-green-600">EcoFleet</span>
+            </a>
+            <button id="closeMobileMenuBtn"
+                class="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                aria-label="Close menu">
+                ✕
+            </button>
+        </div>
+
+      
+        <ul class="flex flex-col px-4 pt-4 pb-2 space-y-1 text-gray-700 dark:text-gray-200 font-medium overflow-y-auto flex-1">
+            <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Home</a></li>
+            <li><a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">About</a></li>
+            <li><a href="services.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Services</a></li>
+            <li><a href="pricing.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Pricing</a></li>
+            <li><a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Contact</a></li>
+            <li><a href="dashboard/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Dashboard</a></li>
+
+        
+            <li class="pt-3 mt-auto">
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-3 flex gap-3">
+                    <button id="mobileThemeToggle"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileThemeIcon">🌓</span>
+                        <span id="mobileThemeLabel">Dark Mode</span>
+                    </button>
+                    <button onclick="toggleRTL()"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileRTLIcon">↔️</span>
+                        <span id="mobileRTLLabel">RTL Mode</span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
+    </aside>
+
+    <div id="mobileOverlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-50 md:hidden
+        opacity-0 invisible transition-opacity duration-300 ease-in-out"></div>
+
+
+
+<!--  PRICING INTRO  -->
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-5xl mx-auto px-6 text-center">
+
+       
+
+        <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-md">
+
+            Flexible Pricing Plans
+
+        </span>
+
+        
+
+        <h1 class="text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white mt-6 leading-tight">
+
+            Fleet Pricing Solutions
+
+        </h1>
+
+        
+
+        <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-8">
+
+            Choose from flexible maintenance packages tailored to fleets of
+            every size. Whether you operate a small business or manage a large
+            enterprise, EcoFleet delivers reliable, cost-effective maintenance
+            solutions that improve vehicle performance, reduce downtime, and
+            ensure environmental compliance.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!--  SERVICE PACKAGES  -->
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+       
+
+        <div class="text-center">
+
+            <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-md">
+                Affordable Plans
+            </span>
+
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+                Service Packages
+            </h2>
+
+            <p class="mt-6 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-8">
+                Select a maintenance package that best suits your fleet size and
+                operational requirements. Every plan is designed to maximize
+                vehicle performance while minimizing downtime.
+            </p>
+
+        </div>
+
+      
+
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+
+            <!--  BASIC  -->
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <span class="text-sm font-semibold uppercase tracking-wider text-green-600 dark:text-green-400">
+                    Starter
+                </span>
+
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-white mt-4">
+                    Basic
+                </h3>
+
+                <p class="text-5xl font-bold text-green-600 mt-6">
+                    ₹4,999
+                </p>
+
+                <p class="text-gray-500 dark:text-gray-400 mt-2">
+                    Per Month
+                </p>
+
+                <p class="mt-6 text-gray-600 dark:text-gray-300 leading-7">
+                    Perfect for small businesses that require routine vehicle
+                    maintenance and essential inspections.
+                </p>
+
+                <ul class="mt-8 space-y-4 text-gray-700 dark:text-gray-300 flex-grow">
+
+                    <li>✔ Engine Oil Change</li>
+                    <li>✔ Fluid Level Check</li>
+                    <li>✔ Vehicle Inspection</li>
+                    <li>✔ Digital Maintenance Report</li>
+
+                </ul>
+
+                <a href="contact.html"
+                   class="mt-8 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold text-center transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl">
+
+                    Choose Plan
+
+                </a>
+
+            </div>
+
+            <!--  STANDARD -->
+
+            <div class="bg-green-600 text-white rounded-2xl shadow-2xl p-8 flex flex-col scale-105 transition-all duration-300 hover:scale-110 hover:shadow-2xl">
+
+                <div class="text-center">
+
+                    <span class="inline-block bg-white text-green-600 px-4 py-2 rounded-full text-sm font-semibold">
+                        ⭐ Most Popular
+                    </span>
+
+                </div>
+
+                <h3 class="text-3xl font-bold mt-6 text-center">
+                    Standard
+                </h3>
+
+                <p class="text-5xl font-bold mt-6 text-center">
+                    ₹9,999
+                </p>
+
+                <p class="text-green-100 mt-2 text-center">
+                    Per Month
+                </p>
+
+                <p class="mt-6 text-green-100 leading-7 text-center">
+                    Ideal for growing fleets requiring comprehensive
+                    maintenance, inspections, and emergency support.
+                </p>
+
+                <ul class="mt-8 space-y-4 flex-grow">
+
+                    <li>✔ Engine Oil Change</li>
+                    <li>✔ Complete Fluid Exchange</li>
+                    <li>✔ Fleet Inspection</li>
+                    <li>✔ Emergency Support</li>
+                    <li>✔ Monthly Performance Report</li>
+
+                </ul>
+
+                <a href="contact.html"
+                   class="mt-8 bg-white text-green-600 py-3 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-gray-100 hover:scale-105 active:scale-95 hover:shadow-xl">
+
+                    Choose Plan
+
+                </a>
+
+            </div>
+
+            <!-- PREMIUM  -->
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <span class="text-sm font-semibold uppercase tracking-wider text-green-600 dark:text-green-400">
+                    Enterprise
+                </span>
+
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-white mt-4">
+                    Premium
+                </h3>
+
+                <p class="text-5xl font-bold text-green-600 mt-6">
+                    ₹19,999
+                </p>
+
+                <p class="text-gray-500 dark:text-gray-400 mt-2">
+                    Per Month
+                </p>
+
+                <p class="mt-6 text-gray-600 dark:text-gray-300 leading-7">
+                    Designed for large fleets requiring priority support,
+                    complete compliance management, and dedicated service.
+                </p>
+
+                <ul class="mt-8 space-y-4 text-gray-700 dark:text-gray-300 flex-grow">
+
+                    <li>✔ Unlimited Maintenance</li>
+                    <li>✔ Priority Emergency Support</li>
+                    <li>✔ EPA Compliance Reports</li>
+                    <li>✔ Dedicated Fleet Manager</li>
+                    <li>✔ Monthly Performance Analytics</li>
+
+                </ul>
+
+                <a href="contact.html"
+                   class="mt-8 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold text-center transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl">
+
+                    Choose Plan
+
+                </a>
+
+            </div>
+
+        </div>
+
+      
+
+        <div class="text-center mt-20">
+
+            <h3 class="text-3xl font-bold text-gray-800 dark:text-white">
+                Need a Custom Enterprise Plan?
+            </h3>
+
+            <p class="mt-5 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-8">
+                We provide customized pricing and maintenance solutions for
+                organizations operating large commercial fleets. Contact our
+                experts to receive a tailored quotation based on your business needs.
+            </p>
+
+            <a href="contact.html"
+               class="inline-block mt-8 border-2 border-green-600 text-green-600 dark:text-green-400 dark:border-green-400 hover:bg-green-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl">
+
+                Request Custom Quote
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FLEET DISCOUNTS -->
+
+<section class="py-20 bg-green-50 dark:bg-gray-800 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        
+
+        <div class="text-center">
+
+            <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-md">
+                Exclusive Savings
+            </span>
+
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+                Fleet Discounts
+            </h2>
+
+            <p class="mt-6 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-8">
+                Save more as your fleet grows. Our flexible pricing model
+                rewards businesses with exclusive discounts, helping reduce
+                maintenance costs while ensuring maximum fleet efficiency.
+            </p>
+
+        </div>
+
+        
+
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+
+           
+
+            <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">
+                    🚚
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mt-6">
+                    Small Fleet
+                </h3>
+
+                <p class="mt-2 text-gray-500 dark:text-gray-400">
+                    5–20 Vehicles
+                </p>
+
+                <div class="mt-6">
+                    <p class="text-5xl font-bold text-green-600">
+                        10%
+                    </p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">
+                        Discount
+                    </p>
+                </div>
+
+                <p class="mt-6 text-gray-600 dark:text-gray-300 leading-7 flex-grow">
+                    Perfect for small businesses looking for reliable,
+                    affordable maintenance plans that keep vehicles running
+                    smoothly year-round.
+                </p>
+
+                <a href="contact.html"
+                   class="inline-block mt-8 bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-green-700 hover:scale-105 active:scale-95 hover:shadow-lg">
+
+                    Get Quote
+
+                </a>
+
+            </div>
+
+           
+
+            <div class="bg-green-600 rounded-2xl shadow-2xl p-8 flex flex-col items-center text-center text-white scale-105 border-2 border-green-500 transition-all duration-300 hover:scale-110 hover:shadow-2xl">
+
+                <span class="inline-block bg-white text-green-600 px-4 py-2 rounded-full text-sm font-semibold">
+                    ⭐ Best Value
+                </span>
+
+                <div class="text-5xl mt-6">
+                    🚛
+                </div>
+
+                <h3 class="text-2xl font-bold mt-6">
+                    Medium Fleet
+                </h3>
+
+                <p class="mt-2 text-green-100">
+                    21–50 Vehicles
+                </p>
+
+                <div class="mt-6">
+                    <p class="text-5xl font-bold">
+                        15%
+                    </p>
+                    <p class="text-green-100 mt-2">
+                        Discount
+                    </p>
+                </div>
+
+                <p class="mt-6 leading-7 text-green-100 flex-grow">
+                    Designed for expanding fleets that require regular
+                    maintenance, priority scheduling, and greater long-term
+                    operational savings.
+                </p>
+
+                <a href="contact.html"
+                   class="inline-block mt-8 bg-white text-green-600 px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-gray-100 hover:scale-105 active:scale-95 hover:shadow-lg">
+
+                    Get Quote
+
+                </a>
+
+            </div>
+
+           
+
+            <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">
+                    🏭
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mt-6">
+                    Enterprise Fleet
+                </h3>
+
+                <p class="mt-2 text-gray-500 dark:text-gray-400">
+                    50+ Vehicles
+                </p>
+
+                <div class="mt-6">
+                    <p class="text-5xl font-bold text-green-600">
+                        20%
+                    </p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">
+                        Discount
+                    </p>
+                </div>
+
+                <p class="mt-6 text-gray-600 dark:text-gray-300 leading-7 flex-grow">
+                    Tailored pricing and dedicated fleet management services
+                    for large enterprises requiring comprehensive maintenance
+                    and compliance support.
+                </p>
+
+                <a href="contact.html"
+                   class="inline-block mt-8 bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-green-700 hover:scale-105 active:scale-95 hover:shadow-lg">
+
+                    Contact Sales
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!--  CUSTOM ENTERPRISE PLANS  -->
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-4xl mx-auto px-6 text-center">
+
+        
+
+        <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-md">
+
+            Enterprise Solutions
+
+        </span>
+
+        
+
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+
+            Custom Enterprise Plans
+
+        </h2>
+
+        
+
+        <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 leading-8">
+
+            Every organization has unique fleet management requirements.
+            Our enterprise plans are tailored to your operations, providing
+            dedicated support, flexible maintenance schedules, and
+            comprehensive compliance solutions that maximize fleet
+            performance while reducing operational costs.
+
+        </p>
+
+        
+
+        <div class="grid sm:grid-cols-2 gap-5 mt-12 text-left">
+
+            <div class="flex items-center gap-3">
+                <span class="text-green-600 text-xl">✔</span>
+                <span class="text-gray-700 dark:text-gray-300">
+                    Dedicated Fleet Manager
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span class="text-green-600 text-xl">✔</span>
+                <span class="text-gray-700 dark:text-gray-300">
+                    Custom Maintenance Plans
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span class="text-green-600 text-xl">✔</span>
+                <span class="text-gray-700 dark:text-gray-300">
+                    Priority Emergency Support
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span class="text-green-600 text-xl">✔</span>
+                <span class="text-gray-700 dark:text-gray-300">
+                    EPA Compliance Reports
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span class="text-green-600 text-xl">✔</span>
+                <span class="text-gray-700 dark:text-gray-300">
+                    Flexible Pricing Options
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span class="text-green-600 text-xl">✔</span>
+                <span class="text-gray-700 dark:text-gray-300">
+                    Monthly Performance Reports
+                </span>
+            </div>
+
+        </div>
+
+        <!-- CTA -->
+
+        <a href="contact.html"
+           class="inline-block mt-12 bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-green-700 hover:scale-105 active:scale-95 hover:shadow-xl">
+
+            Request a Custom Quote
+
+        </a> <br> <br>
+
+    </div>
+
+   
+
+            <div class="relative group">
+
+                <img src="assets/images/enterprise.jpg"
+                     alt="Enterprise Fleet"
+                     class="rounded-2xl shadow-2xl w-full object-cover transition-all duration-500 group-hover:scale-105">
+
+                
+
+                <div class="absolute bottom-6 left-6 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-5 py-3 rounded-xl shadow-lg">
+
+                    <h4 class="font-semibold text-gray-800 dark:text-white">
+                        Enterprise Fleet Solutions
+                    </h4>
+
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                        Customized plans for large organizations.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!--  FOOTER  -->
+
+
+
+<footer class="fade bg-gray-900 dark:bg-black text-gray-300 py-12">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+           
+            <div>
+
+                <h2 class="text-2xl font-bold text-white">
+                    ♻️ EcoFleet
+                </h2>
+
+                <p class="mt-4 text-gray-400 dark:text-gray-500 leading-7">
+                    Professional mobile oil recycling and fluid exchange
+                    services for commercial fleets and industrial businesses.
+                </p>
+
+            </div>
+
+           
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Quick Links
+                </h3>
+
+                <ul class="mt-4 space-y-3">
+
+                    <li><a href="index.html" class="hover:text-green-400 transition duration-300">Home</a></li>
+
+                    <li><a href="about.html" class="hover:text-green-400 transition duration-300">About</a></li>
+
+                    <li><a href="services.html" class="hover:text-green-400 transition duration-300">Services</a></li>
+
+                    <li><a href="pricing.html" class="hover:text-green-400 transition duration-300">Fleet Pricing</a></li>
+
+                    <li><a href="contact.html" class="hover:text-green-400 transition duration-300">Contact</a></li>
+
+                </ul>
+
+            </div>
+
+           
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Services
+                </h3>
+
+                <ul class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <li>Oil Recycling</li>
+
+                    <li>Fluid Exchange</li>
+
+                    <li>Fleet Maintenance</li>
+
+                    <li>EPA Compliance</li>
+
+                </ul>
+
+            </div>
+
+           
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Contact
+                </h3>
+
+                <div class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <p>📍 Coimbatore, Tamil Nadu</p>
+
+                    <p>📞 +91 99999 55555</p>
+
+                    <p>✉️ info@ecofleet.com</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+       
+
+        <hr class="my-8 border-gray-700 dark:border-gray-800">
+
+        <div class="text-center text-gray-500 dark:text-gray-600">
+
+            © 2026 EcoFleet Services. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+        <script src="assets/js/script.js"></script>
+        <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn    = document.getElementById('menuBtn');
+    const closeBtn   = document.getElementById('closeMobileMenuBtn');
+    const overlay    = document.getElementById('mobileOverlay');
+
+    function isRTL() {
+        return document.documentElement.getAttribute('dir') === 'rtl';
+    }
+
+    function positionSidebar() {
+        if (isRTL()) {
+            mobileMenu.style.right = 'auto';
+            mobileMenu.style.left  = '0';
+            mobileMenu.style.transform = 'translateX(-100%)';
+        } else {
+            mobileMenu.style.left  = 'auto';
+            mobileMenu.style.right = '0';
+            mobileMenu.style.transform = 'translateX(100%)';
+        }
+    }
+
+    function openMenu() {
+        positionSidebar();
+        mobileMenu.style.transform = 'translateX(0)';
+        overlay.classList.remove('opacity-0', 'invisible');
+        overlay.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        positionSidebar();
+        overlay.classList.add('opacity-0', 'invisible');
+        overlay.classList.remove('opacity-100');
+        document.body.style.overflow = '';
+    }
+
+    menuBtn  && menuBtn.addEventListener('click', openMenu);
+    closeBtn && closeBtn.addEventListener('click', closeMenu);
+    overlay  && overlay.addEventListener('click', closeMenu);
+
+    function toggleRTL() {
+        closeMenu();
+        const html     = document.documentElement;
+        const isNowRTL = html.getAttribute('dir') !== 'rtl';
+        html.setAttribute('dir', isNowRTL ? 'rtl' : 'ltr');
+        localStorage.setItem('rtl', isNowRTL ? 'true' : 'false');
+        positionSidebar();
+    }
+
+    positionSidebar();
+</script>
+
+</body>
+
+</html>

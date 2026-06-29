@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFleet Services</title>
+    <script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+    }
+    if (localStorage.getItem("rtl") === "true") {
+        document.documentElement.setAttribute("dir", "rtl");
+    }
+</script>
+
+
+    
+    <link rel="stylesheet" href="dist/output.css">
+
+  
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+<body id="body" class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+
+              
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="text-3xl">♻️</span>
+                    <h1 class="text-2xl font-bold text-green-600">EcoFleet</h1>
+                </a>
+
+               
+                <ul class="hidden md:flex gap-1 text-gray-700 dark:text-gray-200 font-medium">
+                    <li><a href="index.html"  class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Home</a></li>
+                    <li><a href="about.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">About</a></li>
+                    <li><a href="services.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Services</a></li>
+                    <li><a href="pricing.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Pricing</a></li>
+                    <li><a href="contact.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Contact</a></li>
+                    <li><a href="dashboard/index.html" cl class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Dashboard</a></li>
+                </ul>
+
+               
+                <div class="hidden md:flex items-center gap-2">
+                    <button id="themeToggle"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300"
+                        title="Switch to Dark Mode">
+                        🌓
+                    </button>
+                    <button id="desktopRTLBtn" onclick="toggleRTL()"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition duration-300"
+                        title="Switch to RTL">
+                        ↔️
+                    </button>
+                </div>
+
+                
+                <button id="menuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-green-600 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">
+                    ☰
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+   
+    <aside id="mobileMenu"
+        class="fixed md:hidden z-[60] w-72 max-w-[85%]
+        bg-white dark:bg-gray-900 shadow-2xl
+        transition-transform duration-300 ease-in-out flex flex-col"
+        style="right:0; top:0; height:100vh; height:100dvh; transform: translateX(100%);">
+
+        
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 shrink-0">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl">♻️</span>
+                <span class="text-lg font-bold text-green-600">EcoFleet</span>
+            </a>
+            <button id="closeMobileMenuBtn"
+                class="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                aria-label="Close menu">
+                ✕
+            </button>
+        </div>
+
+      
+        <ul class="flex flex-col px-4 pt-4 pb-2 space-y-1 text-gray-700 dark:text-gray-200 font-medium overflow-y-auto flex-1">
+            <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Home</a></li>
+            <li><a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">About</a></li>
+            <li><a href="services.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Services</a></li>
+            <li><a href="pricing.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Pricing</a></li>
+            <li><a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Contact</a></li>
+            <li><a href="dashboard/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Dashboard</a></li>
+
+        
+            <li class="pt-3 mt-auto">
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-3 flex gap-3">
+                    <button id="mobileThemeToggle"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileThemeIcon">🌓</span>
+                        <span id="mobileThemeLabel">Dark Mode</span>
+                    </button>
+                    <button onclick="toggleRTL()"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileRTLIcon">↔️</span>
+                        <span id="mobileRTLLabel">RTL Mode</span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
+    </aside>
+
+    <div id="mobileOverlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-50 md:hidden
+        opacity-0 invisible transition-opacity duration-300 ease-in-out"></div>
+
+<!--  ABOUT COMPANY -->
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+           
+
+            <div class="overflow-hidden rounded-2xl">
+
+                <img src="assets/images/about.jpg"
+                     alt="About EcoFleet"
+                     class="w-full rounded-2xl shadow-xl transition-transform duration-500">
+
+            </div>
+
+            
+
+            <div>
+
+                <span class="inline-block bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md">
+                    About Our Company
+
+                </span>
+
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6 leading-tight">
+
+                    Delivering Sustainable Fleet Maintenance Solutions
+
+                </h2>
+
+                <p class="mt-6 text-gray-600 dark:text-gray-300 leading-8">
+
+                    EcoFleet is a trusted provider of mobile oil recycling and
+                    fluid exchange services for commercial fleets, transportation
+                    companies, and industrial businesses. We bring professional
+                    maintenance services directly to your location, helping reduce
+                    vehicle downtime while improving operational efficiency.
+
+                </p>
+
+                <p class="mt-6 text-gray-600 dark:text-gray-300 leading-8">
+
+                    Our experienced technicians use modern equipment and
+                    environmentally responsible practices to deliver safe,
+                    reliable, and high-quality services. We are committed to
+                    helping businesses maintain their fleets efficiently while
+                    supporting sustainability and regulatory compliance.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!--  MISSION & VISION  -->
+
+<section class="py-20 bg-green-50 dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center">
+
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-white">
+                Our Mission & Vision
+            </h2>
+
+            <p class="text-gray-600 dark:text-gray-300 mt-4">
+                Driving sustainable fleet maintenance for a cleaner future.
+            </p>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 mt-14">
+
+         
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
+
+                <div class="text-5xl">🎯</div>
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Our Mission
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                     To provide convenient, efficient, and eco-friendly fleet maintenance solutions that minimize operational disruptions while
+    promoting environmental sustainability. We strive to deliver exceptionalservice, build long-term customer relationships, and support businesses
+    with reliable maintenance programs that enhance vehicle performance and reduce operating costs.
+                </p>
+
+            </div>
+
+            
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
+
+                <div class="text-5xl">🌍</div>
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Our Vision
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                     To become the leading provider of sustainable mobile fleet maintenance services by combining innovation, environmental responsibility,
+    and customer-focused solutions. We aim to create a cleaner future through responsible oil recycling, efficient maintenance practices, and continuous
+    improvement in service quality.   </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!--  CORE VALUES -->
+
+<section class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center">
+
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-white">
+                Our Core Values
+            </h2>
+
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-14">
+
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-8 text-center shadow-md">
+
+                <div class="text-5xl">🤝</div>
+
+                <h3 class="text-xl font-semibold mt-4 text-gray-800 dark:text-white">
+                    Integrity
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-3">
+                    Honest service and transparent communication with every client.
+                </p>
+
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-8 text-center shadow-md">
+
+                <div class="text-5xl">🌱</div>
+
+                <h3 class="text-xl font-semibold mt-4 text-gray-800 dark:text-white">
+                    Sustainability
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-3">
+                    Environmentally responsible recycling and waste management.
+                </p>
+
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-8 text-center shadow-md">
+
+                <div class="text-5xl">⭐</div>
+
+                <h3 class="text-xl font-semibold mt-4 text-gray-800 dark:text-white">
+                    Excellence
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-3">
+                    Delivering quality service through skilled professionals.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!--  OUR TEAM  -->
+
+<section class="py-20 bg-green-50 dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        
+
+        <div class="text-center">
+
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-white">
+                Meet Our Team
+            </h2>
+
+            <p class="text-gray-600 dark:text-gray-300 mt-4">
+                Our experienced professionals are committed to keeping your fleet running efficiently.
+            </p>
+
+        </div>
+
+       
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+
+           
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center hover:-translate-y-2 transition duration-300">
+
+                <img src="assets/images/team1.jpg"
+                     alt="Team Member"
+                     class="w-32 h-32 rounded-full mx-auto object-cover">
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Rajesh Kumar
+                </h3>
+
+                <p class="text-green-600 font-medium mt-2">
+                    Operations Manager
+                </p>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                    12+ years of experience in fleet maintenance and operations.
+                </p>
+
+            </div>
+
+            
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center hover:-translate-y-2 transition duration-300">
+
+                <img src="assets/images/team2.jpg"
+                     alt="Team Member"
+                     class="w-32 h-32 rounded-full mx-auto object-cover">
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Priya Sharma
+                </h3>
+
+                <p class="text-green-600 font-medium mt-2">
+                    Environmental Specialist
+                </p>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                    Ensures every recycling process meets environmental standards.
+                </p>
+
+            </div>
+
+            
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center hover:-translate-y-2 transition duration-300">
+
+                <img src="assets/images/team3.jpg"
+                     alt="Team Member"
+                     class="w-32 h-32 rounded-full mx-auto object-cover">
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Arjun Patel
+                </h3>
+
+                <p class="text-green-600 font-medium mt-2">
+                    Senior Technician
+                </p>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                    Expert in on-site oil change and preventive fleet maintenance.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="py-20 bg-green-50 dark:bg-gray-800">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center">
+
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-white">
+                Environmental Commitment
+            </h2>
+
+            <p class="text-gray-600 dark:text-gray-300 mt-4">
+
+                Sustainability is at the heart of everything we do.
+
+            </p>
+
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-14">
+
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg text-center">
+
+                <div class="text-5xl">♻️</div>
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Responsible Recycling
+                </h3>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300">
+
+                    Every litre of used oil is recycled following environmental standards.
+
+                </p>
+
+            </div>
+
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg text-center">
+
+                <div class="text-5xl">🌱</div>
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Green Practices
+                </h3>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300">
+
+                    We reduce waste and promote sustainable maintenance solutions.
+
+                </p>
+
+            </div>
+
+            <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg text-center">
+
+                <div class="text-5xl">🌍</div>
+
+                <h3 class="text-2xl font-semibold mt-5 text-gray-800 dark:text-white">
+                    Cleaner Future
+                </h3>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300">
+
+                    Our goal is to build a cleaner and safer environment for future generations.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--  FOOTER  -->
+
+
+
+<footer class="fade bg-gray-900 dark:bg-black text-gray-300 py-12">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+            
+            <div>
+
+                <h2 class="text-2xl font-bold text-white">
+                    ♻️ EcoFleet
+                </h2>
+
+                <p class="mt-4 text-gray-400 dark:text-gray-500 leading-7">
+                    Professional mobile oil recycling and fluid exchange
+                    services for commercial fleets and industrial businesses.
+                </p>
+
+            </div>
+
+           
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Quick Links
+                </h3>
+
+                <ul class="mt-4 space-y-3">
+
+                    <li><a href="index.html" class="hover:text-green-400 transition duration-300">Home</a></li>
+
+                    <li><a href="about.html" class="hover:text-green-400 transition duration-300">About</a></li>
+
+                    <li><a href="services.html" class="hover:text-green-400 transition duration-300">Services</a></li>
+
+                    <li><a href="pricing.html" class="hover:text-green-400 transition duration-300">Fleet Pricing</a></li>
+
+                    <li><a href="contact.html" class="hover:text-green-400 transition duration-300">Contact</a></li>
+
+                </ul>
+
+            </div>
+
+            
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Services
+                </h3>
+
+                <ul class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <li>Oil Recycling</li>
+
+                    <li>Fluid Exchange</li>
+
+                    <li>Fleet Maintenance</li>
+
+                    <li>EPA Compliance</li>
+
+                </ul>
+
+            </div>
+
+            
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Contact
+                </h3>
+
+                <div class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <p>📍 Coimbatore, Tamil Nadu</p>
+
+                    <p>📞 +91 99999 55555</p>
+
+                    <p>✉️ info@ecofleet.com</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <hr class="my-8 border-gray-700 dark:border-gray-800">
+
+        <div class="text-center text-gray-500 dark:text-gray-600">
+
+            © 2026 EcoFleet Services. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+        <script src="assets/js/script.js"></script>
+        <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn    = document.getElementById('menuBtn');
+    const closeBtn   = document.getElementById('closeMobileMenuBtn');
+    const overlay    = document.getElementById('mobileOverlay');
+
+    function isRTL() {
+        return document.documentElement.getAttribute('dir') === 'rtl';
+    }
+
+    function positionSidebar() {
+        if (isRTL()) {
+            mobileMenu.style.right = 'auto';
+            mobileMenu.style.left  = '0';
+            mobileMenu.style.transform = 'translateX(-100%)';
+        } else {
+            mobileMenu.style.left  = 'auto';
+            mobileMenu.style.right = '0';
+            mobileMenu.style.transform = 'translateX(100%)';
+        }
+    }
+
+    function openMenu() {
+        positionSidebar();
+        mobileMenu.style.transform = 'translateX(0)';
+        overlay.classList.remove('opacity-0', 'invisible');
+        overlay.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        positionSidebar();
+        overlay.classList.add('opacity-0', 'invisible');
+        overlay.classList.remove('opacity-100');
+        document.body.style.overflow = '';
+    }
+
+    menuBtn  && menuBtn.addEventListener('click', openMenu);
+    closeBtn && closeBtn.addEventListener('click', closeMenu);
+    overlay  && overlay.addEventListener('click', closeMenu);
+
+    function toggleRTL() {
+        closeMenu();
+        const html     = document.documentElement;
+        const isNowRTL = html.getAttribute('dir') !== 'rtl';
+        html.setAttribute('dir', isNowRTL ? 'rtl' : 'ltr');
+        localStorage.setItem('rtl', isNowRTL ? 'true' : 'false');
+        positionSidebar();
+    }
+
+    positionSidebar();
+</script>
+
+</body>
+
+</html>

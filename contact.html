@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFleet Services</title>
+    <script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+    }
+    if (localStorage.getItem("rtl") === "true") {
+        document.documentElement.setAttribute("dir", "rtl");
+    }
+</script>
+     <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="dist/output.css">
+
+   
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+<body id="body" class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+
+              
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="text-3xl">♻️</span>
+                    <h1 class="text-2xl font-bold text-green-600">EcoFleet</h1>
+                </a>
+
+               
+                <ul class="hidden md:flex gap-1 text-gray-700 dark:text-gray-200 font-medium">
+                    <li><a href="index.html"  class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Home</a></li>
+                    <li><a href="about.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">About</a></li>
+                    <li><a href="services.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Services</a></li>
+                    <li><a href="pricing.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Pricing</a></li>
+                    <li><a href="contact.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Contact</a></li>
+                    <li><a href="dashboard/index.html" cl class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Dashboard</a></li>
+                </ul>
+
+               
+                <div class="hidden md:flex items-center gap-2">
+                    <button id="themeToggle"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300"
+                        title="Switch to Dark Mode">
+                        🌓
+                    </button>
+                    <button id="desktopRTLBtn" onclick="toggleRTL()"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition duration-300"
+                        title="Switch to RTL">
+                        ↔️
+                    </button>
+                </div>
+
+                
+                <button id="menuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-green-600 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">
+                    ☰
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+   
+    <aside id="mobileMenu"
+        class="fixed md:hidden z-[60] w-72 max-w-[85%]
+        bg-white dark:bg-gray-900 shadow-2xl
+        transition-transform duration-300 ease-in-out flex flex-col"
+        style="right:0; top:0; height:100vh; height:100dvh; transform: translateX(100%);">
+
+        
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 shrink-0">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl">♻️</span>
+                <span class="text-lg font-bold text-green-600">EcoFleet</span>
+            </a>
+            <button id="closeMobileMenuBtn"
+                class="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                aria-label="Close menu">
+                ✕
+            </button>
+        </div>
+
+      
+        <ul class="flex flex-col px-4 pt-4 pb-2 space-y-1 text-gray-700 dark:text-gray-200 font-medium overflow-y-auto flex-1">
+            <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Home</a></li>
+            <li><a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">About</a></li>
+            <li><a href="services.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Services</a></li>
+            <li><a href="pricing.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Pricing</a></li>
+            <li><a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Contact</a></li>
+            <li><a href="dashboard/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Dashboard</a></li>
+
+        
+            <li class="pt-3 mt-auto">
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-3 flex gap-3">
+                    <button id="mobileThemeToggle"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileThemeIcon">🌓</span>
+                        <span id="mobileThemeLabel">Dark Mode</span>
+                    </button>
+                    <button onclick="toggleRTL()"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileRTLIcon">↔️</span>
+                        <span id="mobileRTLLabel">RTL Mode</span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
+    </aside>
+
+    <div id="mobileOverlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-50 md:hidden
+        opacity-0 invisible transition-opacity duration-300 ease-in-out"></div>
+
+<!--  CONTACT SECTION -->
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        
+        <div class="text-center mb-14">
+
+            <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-md">
+                Get In Touch
+            </span>
+
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+                Send Us a Message
+            </h2>
+
+            <p class="mt-5 max-w-3xl mx-auto text-gray-600 dark:text-gray-300 leading-8">
+                Have questions about our services or need a customized fleet
+                maintenance solution? Fill out the form below and our team
+                will get back to you as soon as possible.
+            </p>
+
+        </div>
+
+        
+
+        <div class="max-w-4xl mx-auto bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-8 lg:p-10">
+
+
+
+<form class="space-y-8">
+
+    
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+        
+
+        <div>
+
+            <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                Full Name
+            </label>
+
+            <div class="relative">
+
+                <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+                <input
+                    type="text"
+                    placeholder="John Doe"
+                    class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 caret-green-600 shadow-sm transition-all duration-300 hover:border-green-400 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20">
+
+            </div>
+
+        </div>
+
+        
+
+        <div>
+
+            <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                Email Address
+            </label>
+
+            <div class="relative">
+
+                <i class="fa-solid fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+                <input
+                    type="email"
+                    placeholder="john@example.com"
+                    class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 caret-green-600 shadow-sm transition-all duration-300 hover:border-green-400 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+        
+
+        <div>
+
+            <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                Phone Number
+            </label>
+
+            <div class="relative">
+
+                <i class="fa-solid fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+                <input
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 caret-green-600 shadow-sm transition-all duration-300 hover:border-green-400 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20">
+
+            </div>
+
+        </div>
+
+        
+
+        <div>
+
+            <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                Company Name
+            </label>
+
+            <div class="relative">
+
+                <i class="fa-solid fa-building absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+                <input
+                    type="text"
+                    placeholder="ABC Logistics Pvt. Ltd."
+                    class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 caret-green-600 shadow-sm transition-all duration-300 hover:border-green-400 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20">
+
+            </div>
+
+        </div>
+
+    </div>
+
+   
+
+    <div>
+
+        <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            Service Required
+        </label>
+
+        <select
+            class="w-full px-4 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm transition-all duration-300 hover:border-green-400 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20">
+
+            <option selected disabled>Select a Service</option>
+
+            <option>Oil Recycling</option>
+
+            <option>Fluid Exchange</option>
+
+            <option>Fleet Maintenance</option>
+
+            <option>Emergency Service</option>
+
+        </select>
+
+    </div>
+
+    
+
+    <div>
+
+        <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            Message
+        </label>
+
+        <textarea
+            rows="6"
+            placeholder="Tell us about your fleet maintenance requirements..."
+            class="w-full px-4 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 caret-green-600 shadow-sm transition-all duration-300 hover:border-green-400 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20 resize-none"></textarea>
+
+    </div>
+
+    
+
+    <div class="text-center pt-2">
+
+        <button
+            type="submit"
+            class="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:scale-95">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            Send Message
+
+        </button>
+
+    </div>
+
+</form>
+
+
+        </div>
+
+        <!-- Business Information -->
+
+        <div class="mt-20">
+
+            <div class="text-center">
+
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white">
+                    Business Information
+                </h2>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300">
+                    Contact us through any of the following channels.
+                </p>
+
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+
+               
+
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                    <i class="fa-solid fa-location-dot text-4xl text-green-600"></i>
+
+                    <h3 class="text-xl font-semibold mt-5 text-gray-800 dark:text-white">
+                        Address
+                    </h3>
+
+                    <p class="mt-4 text-gray-600 dark:text-gray-300 leading-7">
+                        EcoFleet Services<br>
+                        Coimbatore,<br>
+                        Tamil Nadu - 641001
+                    </p>
+
+                </div>
+
+                
+
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                    <i class="fa-solid fa-phone text-4xl text-green-600"></i>
+
+                    <h3 class="text-xl font-semibold mt-5 text-gray-800 dark:text-white">
+                        Phone
+                    </h3>
+
+                    <p class="mt-4 text-gray-600 dark:text-gray-300">
+                        +91 99999 55555
+                    </p>
+
+                </div>
+
+                
+
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                    <i class="fa-solid fa-envelope text-4xl text-green-600"></i>
+
+                    <h3 class="text-xl font-semibold mt-5 text-gray-800 dark:text-white">
+                        Email
+                    </h3>
+
+                    <p class="mt-4 text-gray-600 dark:text-gray-300">
+                        info@ecofleet.com
+                    </p>
+
+                </div>
+
+                
+
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                    <i class="fa-solid fa-clock text-4xl text-green-600"></i>
+
+                    <h3 class="text-xl font-semibold mt-5 text-gray-800 dark:text-white">
+                        Working Hours
+                    </h3>
+
+                    <p class="mt-4 text-gray-600 dark:text-gray-300 leading-7">
+                        Monday – Saturday<br>
+                        9:00 AM – 6:00 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!--  SERVICE REQUEST CTA  -->
+
+<section class="py-24 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-5xl mx-auto px-6">
+
+        <div class="bg-green-600 dark:bg-green-700 rounded-3xl shadow-2xl px-8 py-16 lg:px-16 text-center transition-all duration-300">
+
+            
+
+            <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/20 px-5 py-2 rounded-full text-sm font-semibold text-white tracking-wide transition-all duration-300 hover:scale-105">
+
+                Professional Fleet Solutions
+
+            </span>
+
+            
+
+            <h2 class="mt-6 text-4xl lg:text-5xl font-bold text-white leading-tight">
+
+                Keep Your Fleet Running Without Interruptions
+
+            </h2>
+
+            
+
+            <p class="mt-6 text-lg text-green-100 max-w-3xl mx-auto leading-8">
+
+                EcoFleet provides reliable fleet maintenance, fluid exchange,
+                and environmentally responsible oil recycling services.
+                Let our experts help reduce downtime, improve vehicle
+                performance, and keep your business moving.
+
+            </p>
+
+            
+
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+
+                
+
+                <a href="contact.html"
+                   class="inline-flex items-center justify-center px-8 py-3 bg-white text-green-700 rounded-xl font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95">
+
+                    Request a Quote
+
+                </a>
+
+                
+
+                <a href="services.html"
+                   class="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white rounded-xl font-semibold transition-all duration-300 hover:bg-white hover:text-green-700 hover:-translate-y-1 active:scale-95">
+
+                    Explore Services
+
+                </a>
+
+            </div>
+
+            
+
+            <p class="mt-8 text-sm text-green-100">
+
+                Trusted by businesses for professional fleet maintenance,
+                sustainable oil recycling, and EPA-compliant service solutions.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section> <br> <br>
+
+
+
+
+
+<!--  FOOTER  -->
+
+
+
+<footer class="fade bg-gray-900 dark:bg-black text-gray-300 py-12">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+           
+            <div>
+
+                <h2 class="text-2xl font-bold text-white">
+                    ♻️ EcoFleet
+                </h2>
+
+                <p class="mt-4 text-gray-400 dark:text-gray-500 leading-7">
+                    Professional mobile oil recycling and fluid exchange
+                    services for commercial fleets and industrial businesses.
+                </p>
+
+            </div>
+
+          
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Quick Links
+                </h3>
+
+                <ul class="mt-4 space-y-3">
+
+                    <li><a href="index.html" class="hover:text-green-400 transition duration-300">Home</a></li>
+
+                    <li><a href="about.html" class="hover:text-green-400 transition duration-300">About</a></li>
+
+                    <li><a href="services.html" class="hover:text-green-400 transition duration-300">Services</a></li>
+
+                    <li><a href="pricing.html" class="hover:text-green-400 transition duration-300">Fleet Pricing</a></li>
+
+                    <li><a href="contact.html" class="hover:text-green-400 transition duration-300">Contact</a></li>
+
+                </ul>
+
+            </div>
+
+            
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Services
+                </h3>
+
+                <ul class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <li>Oil Recycling</li>
+
+                    <li>Fluid Exchange</li>
+
+                    <li>Fleet Maintenance</li>
+
+                    <li>EPA Compliance</li>
+
+                </ul>
+
+            </div>
+
+            
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Contact
+                </h3>
+
+                <div class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <p>📍 Coimbatore, Tamil Nadu</p>
+
+                    <p>📞 +91 99999 55555</p>
+
+                    <p>✉️ info@ecofleet.com</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <hr class="my-8 border-gray-700 dark:border-gray-800">
+
+        <div class="text-center text-gray-500 dark:text-gray-600">
+
+            © 2026 EcoFleet Services. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+        <script src="assets/js/script.js"></script>
+        <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn    = document.getElementById('menuBtn');
+    const closeBtn   = document.getElementById('closeMobileMenuBtn');
+    const overlay    = document.getElementById('mobileOverlay');
+
+    function isRTL() {
+        return document.documentElement.getAttribute('dir') === 'rtl';
+    }
+
+    function positionSidebar() {
+        if (isRTL()) {
+            mobileMenu.style.right = 'auto';
+            mobileMenu.style.left  = '0';
+            mobileMenu.style.transform = 'translateX(-100%)';
+        } else {
+            mobileMenu.style.left  = 'auto';
+            mobileMenu.style.right = '0';
+            mobileMenu.style.transform = 'translateX(100%)';
+        }
+    }
+
+    function openMenu() {
+        positionSidebar();
+        mobileMenu.style.transform = 'translateX(0)';
+        overlay.classList.remove('opacity-0', 'invisible');
+        overlay.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        positionSidebar();
+        overlay.classList.add('opacity-0', 'invisible');
+        overlay.classList.remove('opacity-100');
+        document.body.style.overflow = '';
+    }
+
+    menuBtn  && menuBtn.addEventListener('click', openMenu);
+    closeBtn && closeBtn.addEventListener('click', closeMenu);
+    overlay  && overlay.addEventListener('click', closeMenu);
+
+    function toggleRTL() {
+        closeMenu();
+        const html     = document.documentElement;
+        const isNowRTL = html.getAttribute('dir') !== 'rtl';
+        html.setAttribute('dir', isNowRTL ? 'rtl' : 'ltr');
+        localStorage.setItem('rtl', isNowRTL ? 'true' : 'false');
+        positionSidebar();
+    }
+
+    positionSidebar();
+</script>
+
+</body>
+
+</html>

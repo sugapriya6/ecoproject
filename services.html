@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFleet Services</title>
+    <script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+    }
+    if (localStorage.getItem("rtl") === "true") {
+        document.documentElement.setAttribute("dir", "rtl");
+    }
+</script>
+
+
+   
+    <link rel="stylesheet" href="dist/output.css">
+
+  
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+<body id="body" class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+
+              
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="text-3xl">♻️</span>
+                    <h1 class="text-2xl font-bold text-green-600">EcoFleet</h1>
+                </a>
+
+               
+                <ul class="hidden md:flex gap-1 text-gray-700 dark:text-gray-200 font-medium">
+                    <li><a href="index.html"  class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Home</a></li>
+                    <li><a href="about.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">About</a></li>
+                    <li><a href="services.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Services</a></li>
+                    <li><a href="pricing.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Pricing</a></li>
+                    <li><a href="contact.html" class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Contact</a></li>
+                    <li><a href="dashboard/index.html" cl class="px-4 py-2 rounded-lg hover:text-green-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">Dashboard</a></li>
+                </ul>
+
+               
+                <div class="hidden md:flex items-center gap-2">
+                    <button id="themeToggle"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300"
+                        title="Switch to Dark Mode">
+                        🌓
+                    </button>
+                    <button id="desktopRTLBtn" onclick="toggleRTL()"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition duration-300"
+                        title="Switch to RTL">
+                        ↔️
+                    </button>
+                </div>
+
+                
+                <button id="menuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-green-600 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">
+                    ☰
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+   
+    <aside id="mobileMenu"
+        class="fixed md:hidden z-[60] w-72 max-w-[85%]
+        bg-white dark:bg-gray-900 shadow-2xl
+        transition-transform duration-300 ease-in-out flex flex-col"
+        style="right:0; top:0; height:100vh; height:100dvh; transform: translateX(100%);">
+
+        
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 shrink-0">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl">♻️</span>
+                <span class="text-lg font-bold text-green-600">EcoFleet</span>
+            </a>
+            <button id="closeMobileMenuBtn"
+                class="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                aria-label="Close menu">
+                ✕
+            </button>
+        </div>
+
+      
+        <ul class="flex flex-col px-4 pt-4 pb-2 space-y-1 text-gray-700 dark:text-gray-200 font-medium overflow-y-auto flex-1">
+            <li><a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Home</a></li>
+            <li><a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">About</a></li>
+            <li><a href="services.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Services</a></li>
+            <li><a href="pricing.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Pricing</a></li>
+            <li><a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Contact</a></li>
+            <li><a href="dashboard/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 transition">Dashboard</a></li>
+
+        
+            <li class="pt-3 mt-auto">
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-3 flex gap-3">
+                    <button id="mobileThemeToggle"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileThemeIcon">🌓</span>
+                        <span id="mobileThemeLabel">Dark Mode</span>
+                    </button>
+                    <button onclick="toggleRTL()"
+                        class="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileRTLIcon">↔️</span>
+                        <span id="mobileRTLLabel">RTL Mode</span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
+    </aside>
+
+    <div id="mobileOverlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-50 md:hidden
+        opacity-0 invisible transition-opacity duration-300 ease-in-out"></div>
+
+
+    <!-- SERVICES HERO  -->
+
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        
+
+        <div class="text-center max-w-3xl mx-auto">
+
+            <span class="inline-block bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md">
+                Our Core Services
+            </span>
+
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+                Professional Fluid Exchange Services
+            </h2>
+
+            <p class="text-gray-600 dark:text-gray-300 mt-6 leading-8">
+                We provide comprehensive fluid maintenance services using
+                premium-quality products and advanced equipment to maximize
+                vehicle performance, improve reliability, and extend engine life.
+            </p>
+
+        </div>
+
+       
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+
+            
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">🛢️</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    Engine Oil
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4 leading-7">
+                    High-performance engine oil replacement to improve
+                    efficiency, reduce wear, and extend engine life.
+                </p>
+
+            </div>
+
+           
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">⚙️</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    Transmission Fluid
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4 leading-7">
+                    Ensure smoother gear shifting and protect transmission
+                    components with timely fluid replacement.
+                </p>
+
+            </div>
+
+            
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">❄️</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    Coolant Service
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4 leading-7">
+                    Maintain optimal engine temperature and prevent overheating
+                    with professional coolant replacement.
+                </p>
+
+            </div>
+
+           
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">🛑</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    Brake Fluid
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-300 mt-4 leading-7">
+                    Improve braking performance and safety with regular brake
+                    fluid inspection and replacement.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- OIL RECYCLING  -->
+
+<section class="py-20 bg-green-50 dark:bg-gray-800 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+           
+
+            <div class="overflow-hidden rounded-2xl">
+
+                <img src="assets/images/recycle.jpg"
+                     alt="Oil Recycling"
+                     class="w-full rounded-2xl shadow-2xl transition-transform duration-500">
+
+            </div>
+
+           
+            <div>
+
+                <span class="inline-block bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md">
+
+                    Sustainable Recycling
+
+                </span>
+
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+
+                    Responsible Oil Recycling Solutions
+
+                </h2>
+
+                <p class="mt-6 text-gray-600 dark:text-gray-300 leading-8">
+
+                    EcoFleet follows certified recycling practices to safely
+                    collect, transport, and process used engine oil. Our
+                    environmentally responsible approach helps businesses
+                    minimize waste, reduce environmental impact, and comply
+                    with industry regulations.
+
+                </p>
+
+                <div class="mt-8 space-y-4">
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white">
+                            ✓
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300">
+                            Safe Collection & Transportation
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white">
+                            ✓
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300">
+                            Certified Recycling Process
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white">
+                            ✓
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300">
+                            EPA Compliance Documentation
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white">
+                            ✓
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300">
+                            Digital Recycling Reports
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--  FLEET MAINTENANCE PROGRAMS  -->
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Heading -->
+
+        <div class="text-center max-w-3xl mx-auto">
+
+            <span class="inline-block bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md">
+                Maintenance Programs
+            </span>
+
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+                Fleet Maintenance Programs
+            </h2>
+
+            <p class="mt-6 text-gray-600 dark:text-gray-300 leading-8">
+                Choose a maintenance program designed to maximize vehicle
+                performance, reduce unexpected breakdowns, and keep your
+                fleet operating efficiently throughout the year.
+            </p>
+
+        </div>
+
+     
+
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+
+            <!-- Monthly -->
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl text-center">📅</div>
+
+                <h3 class="text-2xl font-bold text-center text-gray-800 dark:text-white mt-6">
+                    Monthly Plan
+                </h3>
+
+                <p class="text-center text-gray-600 dark:text-gray-300 mt-4 leading-7">
+                    Perfect for small fleets requiring regular preventive
+                    maintenance and inspections.
+                </p>
+
+                <ul class="mt-8 space-y-3 text-gray-700 dark:text-gray-300">
+
+                    <li>✔ Monthly Vehicle Inspection</li>
+                    <li>✔ Engine Oil Check</li>
+                    <li>✔ Fluid Level Monitoring</li>
+                    <li>✔ Digital Service Report</li>
+
+                </ul>
+
+                <div class="mt-8 text-center">
+
+                    <a href="contact.html"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl">
+                        Choose Plan
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Quarterly -->
+
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl text-center">🚛</div>
+
+                <div class="text-center mt-4">
+                    <span class="bg-white text-green-600 px-3 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </span>
+                </div>
+
+                <h3 class="text-2xl font-bold text-center mt-6">
+                    Quarterly Plan
+                </h3>
+
+                <p class="text-center text-green-100 mt-4 leading-7">
+                    Ideal for medium-sized fleets requiring scheduled
+                    servicing and detailed inspections.
+                </p>
+
+                <ul class="mt-8 space-y-3">
+
+                    <li>✔ Complete Fluid Exchange</li>
+                    <li>✔ Brake & Coolant Inspection</li>
+                    <li>✔ Performance Check</li>
+                    <li>✔ Compliance Documentation</li>
+
+                </ul>
+
+                <div class="mt-8 text-center">
+
+                    <a href="contact.html"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl">
+                        Choose Plan
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Annual -->
+
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl text-center">🏆</div>
+
+                <h3 class="text-2xl font-bold text-center text-gray-800 dark:text-white mt-6">
+                    Annual Plan
+                </h3>
+
+                <p class="text-center text-gray-600 dark:text-gray-300 mt-4 leading-7">
+                    Complete fleet management with priority support for
+                    large organizations and enterprise clients.
+                </p>
+
+                <ul class="mt-8 space-y-3 text-gray-700 dark:text-gray-300">
+
+                    <li>✔ Unlimited Inspections</li>
+                    <li>✔ Priority Emergency Service</li>
+                    <li>✔ EPA Compliance Reports</li>
+                    <li>✔ Dedicated Fleet Support</li>
+
+                </ul>
+
+                <div class="mt-8 text-center">
+
+                    <a href="contact.html"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl">
+                        Choose Plan
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--EMERGENCY SERVICE OPTIONS -->
+
+<section class="py-20 bg-red-50 dark:bg-gray-800 transition-colors duration-300">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        
+
+        <div class="text-center max-w-3xl mx-auto">
+
+            <span class="inline-block bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md">
+
+                Emergency Assistance
+
+            </span>
+
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+
+                 Emergency Fleet Support
+
+            </h2>
+
+            <p class="mt-6 text-gray-600 dark:text-gray-300 leading-8">
+
+                Unexpected breakdowns can disrupt your business. Our emergency
+                response team provides fast, reliable on-site assistance to
+                minimize downtime and get your fleet back on the road safely.
+
+            </p>
+
+        </div>
+
+      
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+
+            
+
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">🚨</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    24/7 Support
+                </h3>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300 leading-7">
+                    Round-the-clock assistance for urgent fleet maintenance
+                    and unexpected vehicle issues.
+                </p>
+
+            </div>
+
+            
+
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">🚚</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    On-Site Assistance
+                </h3>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300 leading-7">
+                    Our technicians travel directly to your location to
+                    resolve maintenance issues quickly.
+                </p>
+
+            </div>
+
+            
+
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">⚡</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    Rapid Response
+                </h3>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300 leading-7">
+                    Fast dispatch and efficient service to reduce downtime
+                    and keep your fleet operational.
+                </p>
+
+            </div>
+
+            
+
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                <div class="text-5xl">🔧</div>
+
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-6">
+                    Emergency Repairs
+                </h3>
+
+                <p class="mt-4 text-gray-600 dark:text-gray-300 leading-7">
+                    Immediate repair solutions for critical maintenance
+                    issues to keep vehicles moving safely.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SERVICE TIMELINE  -->
+
+<section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+
+    <div class="max-w-5xl mx-auto px-6">
+
+      
+
+        <div class="text-center">
+
+            <span class="inline-block bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md">
+                Our Process
+            </span>
+
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mt-6">
+                Service Timeline
+            </h2>
+
+            <p class="mt-6 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-8">
+                Our streamlined workflow ensures every fleet receives fast,
+                efficient, and environmentally responsible maintenance from
+                start to finish.
+            </p>
+
+        </div>
+
+        
+
+        <div class="relative mt-16">
+
+            
+
+            <div class="absolute left-7 top-0 h-full w-1 bg-green-200 dark:bg-green-700"></div>
+
+            
+
+            <div class="relative flex items-start gap-6 mb-12 group">
+
+                <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 group-hover:scale-110">
+                    📝
+                </div>
+
+                <div>
+
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                        Service Request
+                    </h3>
+
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 leading-7">
+                        Schedule your maintenance service online or contact
+                        our support team to arrange a convenient appointment.
+                    </p>
+
+                </div>
+
+            </div>
+
+           
+
+            <div class="relative flex items-start gap-6 mb-12 group">
+
+                <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 group-hover:scale-110">
+                    🔍
+                </div>
+
+                <div>
+
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                        Vehicle Inspection
+                    </h3>
+
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 leading-7">
+                        Our certified technicians inspect the vehicle and
+                        identify maintenance requirements before servicing.
+                    </p>
+
+                </div>
+
+            </div>
+
+           
+
+            <div class="relative flex items-start gap-6 mb-12 group">
+
+                <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 group-hover:scale-110">
+                    🛢️
+                </div>
+
+                <div>
+
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                        Oil Collection
+                    </h3>
+
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 leading-7">
+                        Used engine oil and fluids are safely collected using
+                        certified equipment for secure transportation.
+                    </p>
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="relative flex items-start gap-6 group">
+
+                <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 group-hover:scale-110">
+                    ♻️
+                </div>
+
+                <div>
+
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                        Recycling & Reporting
+                    </h3>
+
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 leading-7">
+                        Recycled materials are processed responsibly and
+                        compliance reports are generated for your records.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--  FOOTER  -->
+
+
+
+<footer class="fade bg-gray-900 dark:bg-black text-gray-300 py-12">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+           
+            <div>
+
+                <h2 class="text-2xl font-bold text-white">
+                    ♻️ EcoFleet
+                </h2>
+
+                <p class="mt-4 text-gray-400 dark:text-gray-500 leading-7">
+                    Professional mobile oil recycling and fluid exchange
+                    services for commercial fleets and industrial businesses.
+                </p>
+
+            </div>
+
+           
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Quick Links
+                </h3>
+
+                <ul class="mt-4 space-y-3">
+
+                    <li><a href="index.html" class="hover:text-green-400 transition duration-300">Home</a></li>
+
+                    <li><a href="about.html" class="hover:text-green-400 transition duration-300">About</a></li>
+
+                    <li><a href="services.html" class="hover:text-green-400 transition duration-300">Services</a></li>
+
+                    <li><a href="pricing.html" class="hover:text-green-400 transition duration-300">Fleet Pricing</a></li>
+
+                    <li><a href="contact.html" class="hover:text-green-400 transition duration-300">Contact</a></li>
+
+                </ul>
+
+            </div>
+
+           
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Services
+                </h3>
+
+                <ul class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <li>Oil Recycling</li>
+
+                    <li>Fluid Exchange</li>
+
+                    <li>Fleet Maintenance</li>
+
+                    <li>EPA Compliance</li>
+
+                </ul>
+
+            </div>
+
+          
+            <div>
+
+                <h3 class="text-xl font-semibold text-white">
+                    Contact
+                </h3>
+
+                <div class="mt-4 space-y-3 text-gray-400 dark:text-gray-500">
+
+                    <p>📍 Coimbatore, Tamil Nadu</p>
+
+                    <p>📞 +91 99999 55555</p>
+
+                    <p>✉️ info@ecofleet.com</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <hr class="my-8 border-gray-700 dark:border-gray-800">
+
+        <div class="text-center text-gray-500 dark:text-gray-600">
+
+            © 2026 EcoFleet Services. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+    
+
+    <script src="assets/js/script.js"></script>
+    <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn    = document.getElementById('menuBtn');
+    const closeBtn   = document.getElementById('closeMobileMenuBtn');
+    const overlay    = document.getElementById('mobileOverlay');
+
+    function isRTL() {
+        return document.documentElement.getAttribute('dir') === 'rtl';
+    }
+
+    function positionSidebar() {
+        if (isRTL()) {
+            mobileMenu.style.right = 'auto';
+            mobileMenu.style.left  = '0';
+            mobileMenu.style.transform = 'translateX(-100%)';
+        } else {
+            mobileMenu.style.left  = 'auto';
+            mobileMenu.style.right = '0';
+            mobileMenu.style.transform = 'translateX(100%)';
+        }
+    }
+
+    function openMenu() {
+        positionSidebar();
+        mobileMenu.style.transform = 'translateX(0)';
+        overlay.classList.remove('opacity-0', 'invisible');
+        overlay.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        positionSidebar();
+        overlay.classList.add('opacity-0', 'invisible');
+        overlay.classList.remove('opacity-100');
+        document.body.style.overflow = '';
+    }
+
+    menuBtn  && menuBtn.addEventListener('click', openMenu);
+    closeBtn && closeBtn.addEventListener('click', closeMenu);
+    overlay  && overlay.addEventListener('click', closeMenu);
+
+    function toggleRTL() {
+        closeMenu();
+        const html     = document.documentElement;
+        const isNowRTL = html.getAttribute('dir') !== 'rtl';
+        html.setAttribute('dir', isNowRTL ? 'rtl' : 'ltr');
+        localStorage.setItem('rtl', isNowRTL ? 'true' : 'false');
+        positionSidebar();
+    }
+
+    positionSidebar();
+</script>
+
+</body>
+
+</html>

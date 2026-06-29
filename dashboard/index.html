@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFleet Dashboard</title>
+    <script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+    }
+    if (localStorage.getItem("rtl") === "true") {
+        document.documentElement.setAttribute("dir", "rtl");
+    }
+</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+</head>
+<body id="body" class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+<div class="flex min-h-screen">
+
+    <aside id="sidebar"
+        class="fixed lg:static inset-y-0 left-0 rtl:left-auto rtl:right-0 z-50 h-screen w-72 max-w-[82%]
+        bg-white dark:bg-gray-800 shadow-2xl lg:shadow-xl
+        transform -translate-x-full rtl:translate-x-full lg:translate-x-0
+        transition-transform duration-300 ease-in-out flex flex-col">
+
+      
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 shrink-0">
+            <div>
+                <h1 class="text-2xl font-bold text-green-600">
+                    <span class="text-3xl">♻️</span> EcoFleet
+                </h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Fleet Manager</p>
+            </div>
+            <button id="closeSidebarBtn"
+                class="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                aria-label="Close menu">
+                ✕
+            </button>
+        </div>
+
+    
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <a href="index.html"
+                 class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+             
+                Dashboard
+            </a>
+            <a href="../index.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                Home
+            </a>
+            <a href="#maintenance"
+                class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                Maintenance
+            </a>
+            <a href="#scheduling"
+                class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                Scheduling
+            </a>
+            <a href="#compliance"
+                class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                Compliance
+            </a>
+            <a href="#fleet"
+                class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                Fleet
+            </a>
+
+           
+            <div class="pt-2 mt-auto">
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-3">
+                    <button id="mobileThemeToggle"
+                        class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium text-sm">
+                        <span id="mobileThemeIcon">🌓</span>
+                        <span id="mobileThemeLabel">Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+    </aside>
+
+    <div id="overlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-40 lg:hidden
+        opacity-0 invisible transition-opacity duration-300 ease-in-out"></div>
+    <main class="flex-1 min-w-0">
+
+        <header class="bg-white dark:bg-gray-800 shadow px-4 py-4 flex justify-between items-center sticky top-0 z-30">
+            <div class="flex items-center gap-3">
+                <button id="menuBtn" class="lg:hidden text-2xl text-green-600 focus:outline-none">☰</button>
+                <h2 class="text-xl font-semibold">Fleet Dashboard</h2>
+            </div>
+           
+        </header>
+
+        <!-- DASHBOARD STATS -->
+        <section id="dashboard" class="p-6">
+            <h3 class="text-2xl font-bold">Welcome, Fleet Manager 👋</h3>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">Overview of your fleet performance</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+                    <p class="text-gray-500">Total Vehicles</p>
+                    <h2 class="text-3xl font-bold text-green-600 mt-2">128</h2>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+                    <p class="text-gray-500">Services</p>
+                    <h2 class="text-3xl font-bold text-green-600 mt-2">95</h2>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+                    <p class="text-gray-500">Maintenance</p>
+                    <h2 class="text-3xl font-bold text-green-600 mt-2">14</h2>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+                    <p class="text-gray-500">Compliance</p>
+                    <h2 class="text-3xl font-bold text-green-600 mt-2">98%</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAINTENANCE LOGS -->
+        <section id="maintenance" class="p-6 mt-12">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Maintenance Logs</h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">Recent fleet service history and maintenance records.</p>
+
+            <div class="overflow-x-auto mt-6">
+                <table class="w-full bg-white dark:bg-gray-800 rounded-xl shadow">
+                    <thead class="bg-gray-100 dark:bg-gray-700 text-left">
+                        <tr>
+                            <th class="p-4">Vehicle ID</th>
+                            <th class="p-4">Service Type</th>
+                            <th class="p-4">Date</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 dark:text-gray-300">
+                        <tr class="border-t dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <td class="p-4">TN-01-AB-1234</td>
+                            <td class="p-4">Oil Change</td>
+                            <td class="p-4">20 Jan 2026</td>
+                            <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Completed</span></td>
+                            <td class="p-4">₹2,500</td>
+                        </tr>
+                        <tr class="border-t dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <td class="p-4">TN-02-CD-5678</td>
+                            <td class="p-4">Brake Check</td>
+                            <td class="p-4">22 Jan 2026</td>
+                            <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Pending</span></td>
+                            <td class="p-4">₹1,800</td>
+                        </tr>
+                        <tr class="border-t dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <td class="p-4">TN-03-EF-9999</td>
+                            <td class="p-4">Fluid Change</td>
+                            <td class="p-4">25 Jan 2026</td>
+                            <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Completed</span></td>
+                            <td class="p-4">₹3,200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SCHEDULING MODULE -->
+        <section id="scheduling" class="p-6 mt-14">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white">Scheduling</h2>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Manage service requests, fleet appointments, and recurring maintenance plans.</p>
+                </div>
+                <button class="self-start md:self-auto bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-md">
+                    + New Schedule
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Schedule Service Requests</h3>
+                        <span class="text-2xl">🛠️</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 mt-3 leading-6">Create and manage individual vehicle service requests with priority handling and tracking.</p>
+                    <div class="mt-5 flex gap-2 flex-wrap">
+                        <span class="text-xs px-3 py-1 bg-green-100 text-green-700 rounded-full">Instant Booking</span>
+                        <span class="text-xs px-3 py-1 bg-blue-100 text-blue-700 rounded-full">Priority Support</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Bulk Fleet Appointments</h3>
+                        <span class="text-2xl">🚚</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 mt-3 leading-6">Schedule maintenance for multiple vehicles at once to reduce downtime and improve efficiency.</p>
+                    <div class="mt-5 flex gap-2 flex-wrap">
+                        <span class="text-xs px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full">Bulk Scheduling</span>
+                        <span class="text-xs px-3 py-1 bg-purple-100 text-purple-700 rounded-full">Fleet Optimization</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Recurring Maintenance Plans</h3>
+                        <span class="text-2xl">🔁</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 mt-3 leading-6">Automate maintenance scheduling with recurring plans of vehicles for long-term fleet health.</p>
+                    <div class="mt-5 flex gap-2 flex-wrap">
+                        <span class="text-xs px-3 py-1 bg-red-100 text-red-700 rounded-full">Auto Schedule</span>
+                        <span class="text-xs px-3 py-1 bg-green-100 text-green-700 rounded-full">Long-term Care</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EPA COMPLIANCE -->
+        <section id="compliance" class="p-6 mt-12">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">EPA Compliance</h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">Track environmental compliance and recycling documentation.</p>
+
+            <div class="mt-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Compliance Status</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1">All fleet operations are currently compliant with EPA regulations.</p>
+                </div>
+                <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold self-start sm:self-auto">
+                    98% Compliant
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:-translate-y-1 transition">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Compliance Certificate</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Official EPA certification document.</p>
+                    <button class="mt-4 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm transition hover:scale-105">Download</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:-translate-y-1 transition">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Recycling Reports</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Monthly oil recycling documentation.</p>
+                    <button class="mt-4 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm transition hover:scale-105">View Reports</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:-translate-y-1 transition">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Compliance Records</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Historical compliance tracking data.</p>
+                    <button class="mt-4 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm transition hover:scale-105">View Records</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLEET MANAGEMENT -->
+        <section id="fleet" class="p-6 mt-12">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Fleet Management</h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">Monitor all vehicles in your fleet with real-time status tracking.</p>
+
+            <div class="overflow-x-auto mt-6">
+                <table class="w-full bg-white dark:bg-gray-800 rounded-xl shadow">
+                    <thead class="bg-gray-100 dark:bg-gray-700 text-left">
+                        <tr>
+                            <th class="p-4">Vehicle ID</th>
+                            <th class="p-4">Model</th>
+                            <th class="p-4">Driver</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Last Service</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 dark:text-gray-300">
+                        <tr class="border-t dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <td class="p-4">TN-01-AB-1234</td>
+                            <td class="p-4">Tata Ace</td>
+                            <td class="p-4">Ravi Kumar</td>
+                            <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Active</span></td>
+                            <td class="p-4">20 Jan 2026</td>
+                        </tr>
+                        <tr class="border-t dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <td class="p-4">TN-02-CD-5678</td>
+                            <td class="p-4">Mahindra Bolero</td>
+                            <td class="p-4">Arjun</td>
+                            <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Maintenance</span></td>
+                            <td class="p-4">18 Jan 2026</td>
+                        </tr>
+                        <tr class="border-t dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <td class="p-4">TN-03-EF-9999</td>
+                            <td class="p-4">Ashok Leyland Truck</td>
+                            <td class="p-4">Suresh</td>
+                            <td class="p-4"><span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">Idle</span></td>
+                            <td class="p-4">12 Jan 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+function applyTheme() {
+    if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
+}
+applyTheme();
+
+window.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+    }
+    if (localStorage.getItem("rtl") === "true") {
+        document.documentElement.setAttribute("dir", "rtl");
+    } else {
+        document.documentElement.setAttribute("dir", "ltr");
+    }
+});
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+
+function isRTL() {
+    return document.documentElement.getAttribute("dir") === "rtl";
+}
+
+function openSidebar() {
+    sidebar.classList.remove("-translate-x-full", "translate-x-full");
+    overlay.classList.remove("invisible", "opacity-0");
+    document.body.classList.add("overflow-hidden");
+}
+
+function closeSidebar() {
+    sidebar.classList.add(isRTL() ? "translate-x-full" : "-translate-x-full");
+    overlay.classList.add("opacity-0");
+    overlay.addEventListener("transitionend", () => {
+        if (overlay.classList.contains("opacity-0")) overlay.classList.add("invisible");
+    }, { once: true });
+    document.body.classList.remove("overflow-hidden");
+}
+
+function isSidebarOpen() {
+    return !sidebar.classList.contains("-translate-x-full") && !sidebar.classList.contains("translate-x-full");
+}
+
+menuBtn.addEventListener("click", () => {
+    isSidebarOpen() ? closeSidebar() : openSidebar();
+});
+
+closeSidebarBtn.addEventListener("click", closeSidebar);
+
+overlay.addEventListener("click", closeSidebar);
+
+
+window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+        overlay.classList.add("opacity-0", "invisible");
+        document.body.classList.remove("overflow-hidden");
+    }
+});
+
+const mobileThemeToggle = document.getElementById("mobileThemeToggle");
+mobileThemeToggle.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    if (document.documentElement.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+});
+
+
+document.querySelectorAll("aside nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        if (window.innerWidth < 1024) {
+            closeSidebar();
+        }
+    });
+});
+
+
+const desktopThemeToggle = document.getElementById("desktopThemeToggle");
+if (desktopThemeToggle) {
+    desktopThemeToggle.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        if (document.documentElement.classList.contains("dark")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    });
+}
+</script>
+
+</body>
+</html>
